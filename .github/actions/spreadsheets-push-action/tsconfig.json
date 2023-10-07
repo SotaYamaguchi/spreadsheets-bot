@@ -10,6 +10,6 @@
     "declaration": true,
     "declarationMap": true
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts","../../../env.d.ts"],
   "exclude": ["dist"]
 }
