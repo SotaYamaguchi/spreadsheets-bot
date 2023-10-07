@@ -14,13 +14,10 @@ const run = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => 
 
   const doc = new GoogleSpreadsheet(process.env.SHEET_ID, serviceAccountAuth)
 
-  await doc.loadInfo() // loads document properties and worksheets
-  console.log(doc.title)
-  await doc.updateProperties({ title: 'github連携1' })
+  const sheet = await doc.addSheet({ headerValues: ['pr'] })
 
-  const sheet = doc.sheetsByIndex[0] // or use `doc.sheetsById[id]` or `doc.sheetsByTitle[title]`
-  console.log(sheet.title)
-  console.log(sheet.rowCount)
+  // append rows
+  await sheet.addRow({ pr: 'larry@google.com' })
 
   await res.status(200).json({ name: '/api/getNamelll' })
   res.end()
