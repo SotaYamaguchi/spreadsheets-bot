@@ -5,15 +5,15 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 dotenv.config()
 
 const run = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
-  // Initialize auth - see https://theoephraim.github.io/node-google-spreadsheet/#/guides/authentication
+  const aa = process.env.GOOGLE_PRIVATE_KEY
+  console.log('GOOGLE_PRIVATE_KEY', aa)
+
   const serviceAccountAuth = new JWT({
     email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
     key: process.env.GOOGLE_PRIVATE_KEY,
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   })
 
-  const aa = process.env.GOOGLE_PRIVATE_KEY
-  console.log('GOOGLE_PRIVATE_KEY', aa)
 
   const doc = new GoogleSpreadsheet(process.env.SHEET_ID, serviceAccountAuth)
 
