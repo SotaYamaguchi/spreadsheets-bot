@@ -12,6 +12,9 @@ const run = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => 
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   })
 
+  const aa = process.env.GOOGLE_PRIVATE_KEY
+  console.log('GOOGLE_PRIVATE_KEY', aa)
+
   const doc = new GoogleSpreadsheet(process.env.SHEET_ID, serviceAccountAuth)
 
   const sheet = await doc.addSheet({ headerValues: ['pr'] })
