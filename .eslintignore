@@ -1,0 +1,9 @@
+.eslintrc.js
+.next
+jest.config.js
+jest.setup.js
+next.config.js
+node_modules
+ppj.config.js
+public
+stylelint.config.js

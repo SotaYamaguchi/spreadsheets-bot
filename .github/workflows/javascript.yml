@@ -1,0 +1,20 @@
+name: 'spreadsheets-push'
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+
+jobs:
+  spreadsheets:
+    name: 'Spreadsheets push'
+    runs-on: ubuntu-latest
+    if: contains(github.head_ref, 'qa/')
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Spreadsheets push
+        uses: ./.github/actions/spreadsheets-push-action
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

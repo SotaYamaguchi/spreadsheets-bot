@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+node -v
+pnpm -v
+
+pnpm svg-component-gen
+pnpm lint-staged --verbose
