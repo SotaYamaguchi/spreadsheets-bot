@@ -21,7 +21,6 @@
     "update-check": "pnpm lint && pnpm fmt && pnpm test && pnpm type && storybook build && next build --no-lint"
   },
   "dependencies": {
-    "@types/google-spreadsheet": "4.0.0",
     "dotenv": "16.3.1",
     "google-auth-library": "9.1.0",
     "google-spreadsheet": "4.1.0",
@@ -60,6 +59,7 @@
     "@testing-library/user-event": "14.4.3",
     "@types/cli-color": "2.0.3",
     "@types/fs-extra": "11.0.1",
+    "@types/google-spreadsheet": "4.0.0",
     "@types/inquirer": "9.0.3",
     "@types/node": "20.6.0",
     "@types/react": "18.2.21",
@@ -110,6 +110,7 @@
     "react-is": "18.2.0",
     "react-test-renderer": "18.2.0",
     "require-from-string": "2.0.2",
+    "sheets-types": "link:google-spreadsheet/src/lib/types/sheets-types",
     "storybook": "7.4.0",
     "storybook-addon-designs": "6.3.1",
     "stylelint": "15.10.3",

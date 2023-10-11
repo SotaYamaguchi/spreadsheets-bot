@@ -48,3 +48,6 @@ storybook-static
 .swc
 
 /lib/cli/dist/
+
+# extention
+secret.json

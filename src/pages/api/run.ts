@@ -6,6 +6,7 @@ dotenv.config()
 
 const run = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
   const aa = process.env.GOOGLE_PRIVATE_KEY
+  // eslint-disable-next-line no-console
   console.log('GOOGLE_PRIVATE_KEY', aa)
 
   const serviceAccountAuth = new JWT({
@@ -14,13 +15,28 @@ const run = async (req: NextApiRequest, res: NextApiResponse): Promise<void> => 
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   })
 
-
   const doc = new GoogleSpreadsheet(process.env.SHEET_ID, serviceAccountAuth)
+  await doc.loadInfo()
+  const sheet = doc.sheetsByTitle['テンプレート']
+  // console.log(sheet)
+  const copiedSheet = await sheet.copyToSpreadsheet(process.env.SHEET_ID)
+  // eslint-disable-next-line no-console
+  console.log(copiedSheet.data.sheetId)
 
-  const sheet = await doc.addSheet({ headerValues: ['pr'] })
+  await doc.loadInfo()
 
-  // append rows
-  await sheet.addRow({ pr: 'larry@google.com' })
+  const sheets = doc.sheetsById
+  // console.log(sheets)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const targetSheet = sheets[`${copiedSheet.data.sheetId}`]
+  // await targetSheet.updateProperties({ title: "過去推薦者から登録" })
+  // await targetSheet.values.update(copiedSheet)
+  await targetSheet.values.update()
+  // await targetSheet.updateGridProperties({
+  //   columnCount: 2,
+  //   rowCount: 1,
+  // })
 
   await res.status(200).json({ name: '/api/getNamelll' })
   res.end()
